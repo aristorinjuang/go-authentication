@@ -1,0 +1,5 @@
+# Authentication
+
+A simple app to authenticate users in Go.
+
+It demonstrates the minimum best practice of storing passwords in the database and handling tokens.
