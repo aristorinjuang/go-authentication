@@ -16,7 +16,7 @@ func (u *User) Entity() *entity.User {
 	return entity.NewUser(
 		u.Email,
 		valueobject.NewName(u.FirstName, u.LastName),
-		valueobject.NewPassword(u.Hash),
+		valueobject.NewPasswordFromHash(u.Hash),
 	)
 }
 

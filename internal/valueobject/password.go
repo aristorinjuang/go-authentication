@@ -5,20 +5,30 @@ import (
 )
 
 type Password struct {
-	Hash string
+	hash string
+}
+
+func (p Password) Hash() string {
+	return p.hash
 }
 
 func (p *Password) SetHash(password string) {
 	hash, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	p.Hash = string(hash)
+	p.hash = string(hash)
 }
 
 func (p *Password) Verify(password string) bool {
-	return bcrypt.CompareHashAndPassword([]byte(p.Hash), []byte(password)) == nil
+	return bcrypt.CompareHashAndPassword([]byte(p.hash), []byte(password)) == nil
 }
 
-func NewPassword(hash string) *Password {
+func NewPasswordFromHash(hash string) *Password {
 	return &Password{
-		Hash: hash,
+		hash: hash,
 	}
+}
+
+func NewPasswordFromPlain(plainPassword string) *Password {
+	hash, _ := bcrypt.GenerateFromPassword([]byte(plainPassword), bcrypt.DefaultCost)
+
+	return NewPasswordFromHash(string(hash))
 }

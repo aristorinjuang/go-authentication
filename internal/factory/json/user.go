@@ -46,7 +46,7 @@ func (u *User) Entity() *entity.User {
 	return entity.NewUser(
 		valueobject.NewEmail(u.Email),
 		valueobject.NewName(u.Name.First, u.Name.Last),
-		valueobject.NewPassword(""),
+		new(valueobject.Password),
 	)
 }
 

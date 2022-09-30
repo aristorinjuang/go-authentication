@@ -2,12 +2,12 @@ package http
 
 import (
 	"github.com/aristorinjuang/go-authentication/internal/config"
-	"github.com/aristorinjuang/go-authentication/internal/repository"
+	"github.com/aristorinjuang/go-authentication/internal/usecase"
 	"github.com/gorilla/mux"
 )
 
-func Router(c *config.Config, repo repository.Repository) *mux.Router {
-	h := NewHandler(c, repo)
+func Router(c *config.Config, usecase usecase.Usecase) *mux.Router {
+	h := NewHandler(c, usecase)
 
 	router := mux.NewRouter()
 	router.HandleFunc("/login", h.Login)

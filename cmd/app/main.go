@@ -6,6 +6,7 @@ import (
 	"github.com/aristorinjuang/go-authentication/internal/config"
 	httpDelivery "github.com/aristorinjuang/go-authentication/internal/delivery/http"
 	"github.com/aristorinjuang/go-authentication/internal/infrastructure/database"
+	"github.com/aristorinjuang/go-authentication/internal/usecase"
 )
 
 func main() {
@@ -19,5 +20,7 @@ func main() {
 		log.Panic(err)
 	}
 
-	log.Panic(httpDelivery.Run(c, database.NewMySQL(db)))
+	log.Panic(httpDelivery.Run(c, usecase.NewUsecase(
+		database.NewMySQL(db),
+	)))
 }

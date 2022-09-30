@@ -33,7 +33,7 @@ func Authentication(accessTokenSecret string) func(http.Handler) http.Handler {
 				log.Println(err)
 
 				w.WriteHeader(http.StatusForbidden)
-				w.Write(jsonFactory.NewResponse("error", "failed to verify the token", nil).JSON())
+				w.Write(NewResponse("error", "failed to verify the token", nil).JSON())
 
 				return
 			}
